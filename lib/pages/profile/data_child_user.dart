@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:stuntle/config/route_name.dart';
 import 'package:stuntle/cubit/child/child_cubit.dart';
 import 'package:stuntle/cubit/health/health_cubit.dart';
-import 'package:stuntle/pages/homepage/data_anak_tab.dart';
+import 'package:stuntle/pages/homepage/pantau/child/data_anak_tab.dart';
 import 'package:stuntle/pages/widget/connected_faskes_widget.dart';
 import 'package:stuntle/pages/widget/loading_widget.dart';
 

@@ -14,17 +14,19 @@ import 'package:stuntle/pages/auth/login_page.dart';
 import 'package:stuntle/pages/auth/register_page.dart';
 import 'package:stuntle/pages/eror_page.dart';
 import 'package:stuntle/pages/food_recipes/search_recipes_page.dart';
-import 'package:stuntle/pages/homepage/add_child_page.dart';
-import 'package:stuntle/pages/homepage/bantuan_page.dart';
-import 'package:stuntle/pages/homepage/chat_page.dart';
-import 'package:stuntle/pages/homepage/detail_bantuan.dart';
-import 'package:stuntle/pages/homepage/form_ajuan_bantuan.dart';
-import 'package:stuntle/pages/homepage/grup_page.dart';
+import 'package:stuntle/pages/homepage/pantau/baby/detail_data_kehamilan.dart';
+import 'package:stuntle/pages/homepage/pantau/child/add_child_page.dart';
+import 'package:stuntle/pages/homepage/help/bantuan_page.dart';
+import 'package:stuntle/pages/homepage/chat/chat_page.dart';
+import 'package:stuntle/pages/homepage/help/detail_bantuan.dart';
+import 'package:stuntle/pages/homepage/help/form_ajuan_bantuan.dart';
+import 'package:stuntle/pages/homepage/grup/grup_page.dart';
 import 'package:stuntle/pages/homepage/home_page.dart';
-import 'package:stuntle/pages/homepage/medical_facility_connect.dart';
-import 'package:stuntle/pages/homepage/pantau_bayi_page.dart';
-import 'package:stuntle/pages/homepage/periksa_anak_page.dart';
-import 'package:stuntle/pages/homepage/periksa_hamil_page.dart';
+import 'package:stuntle/pages/homepage/medical_facility/medical_facility_connect.dart';
+import 'package:stuntle/pages/homepage/pantau/baby/pantau_bayi_page.dart';
+import 'package:stuntle/pages/homepage/pantau/child/detail_data_anak.dart';
+import 'package:stuntle/pages/homepage/pantau/child/periksa_anak_page.dart';
+import 'package:stuntle/pages/homepage/pantau/baby/periksa_hamil_page.dart';
 import 'package:stuntle/pages/onboarding/onboarding_page.dart';
 import 'package:stuntle/pages/profile/about_us.dart';
 import 'package:stuntle/pages/profile/data_user.dart';
@@ -121,6 +123,10 @@ class RouteGenerator {
             builder: (_) => DetailBantuanPage(
                   helpSubmit: settings.arguments as HelpSubmit,
                 ));
+      case detailDataKehamilan:
+        return MaterialPageRoute(builder: (_) => const DetailDataKehamilan());
+      case detailDataAnak:
+        return MaterialPageRoute(builder: (_) => const DetailDataAnak());
 
       default:
         return MaterialPageRoute(

@@ -9,6 +9,7 @@ class TapText extends StatelessWidget {
   final void Function()? onTapFunc;
   final TextAlign? textAlign;
   final double? padding;
+  final Color? text2Color;
 
   const TapText({
     Key? key,
@@ -17,6 +18,7 @@ class TapText extends StatelessWidget {
     this.onTapFunc,
     this.textAlign,
     this.padding,
+    this.text2Color,
   }) : super(key: key);
 
   @override
@@ -35,8 +37,8 @@ class TapText extends StatelessWidget {
             ),
             TextSpan(
               text: text2,
-              style: const TextStyle(
-                color: violetColor,
+              style: TextStyle(
+                color: text2Color ?? violetColor,
               ),
               recognizer: TapGestureRecognizer()..onTap = onTapFunc,
             ),

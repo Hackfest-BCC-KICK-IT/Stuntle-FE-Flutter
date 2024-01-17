@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:stuntle/config/route_name.dart';
 import 'package:stuntle/cubit/health/health_cubit.dart';
 import 'package:stuntle/cubit/pregnancy/pregnancy_cubit.dart';
-import 'package:stuntle/pages/homepage/pantau_kehamilan_tab.dart';
+import 'package:stuntle/pages/homepage/pantau/baby/pantau_kehamilan_tab.dart';
 import 'package:stuntle/pages/widget/connected_faskes_widget.dart';
 
 class DataPregnacyUser extends StatefulWidget {

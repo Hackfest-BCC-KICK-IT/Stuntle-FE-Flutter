@@ -30,3 +30,5 @@ const String bantuanPage = "/bantuanPage";
 const String formBantuanPage = "/formBantuanPage";
 const String addDataChild = "/addDataAnak";
 const String detailBantuan = "/detailBantuan";
+const String detailDataKehamilan = "/detaildatakehamilan";
+const String detailDataAnak = "/detailDataAnak";
