@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:stuntle/config/color_theme.dart';
 import 'package:stuntle/config/font_theme.dart';
+import 'package:stuntle/config/route_name.dart';
 import 'package:stuntle/pages/homepage/pantau/widgets/acrodion.dart';
 import 'package:stuntle/pages/homepage/pantau/widgets/pemeriksaan_button.dart';
 import 'package:stuntle/pages/widget/app_bar.dart';
@@ -89,7 +90,10 @@ class DetailDataAnak extends StatelessWidget {
             contentText: "Tambahkan Data Pemeriksaan Mandiri",
             minimumSize: const Size(348, 48),
             maximumSize: const Size(double.infinity, 48),
-            onPressedFunc: () {},
+            onPressedFunc: () => Navigator.pushNamed(
+              context,
+              addDataMandiri,
+            ),
           )
         ],
       ),

@@ -25,6 +25,8 @@ import 'package:stuntle/pages/homepage/home_page.dart';
 import 'package:stuntle/pages/homepage/medical_facility/medical_facility_connect.dart';
 import 'package:stuntle/pages/homepage/pantau/baby/pantau_bayi_page.dart';
 import 'package:stuntle/pages/homepage/pantau/child/detail_data_anak.dart';
+import 'package:stuntle/pages/homepage/pantau/child/pemeriksaan_mandiri/add_data_mandiri.dart';
+import 'package:stuntle/pages/homepage/pantau/child/pemeriksaan_mandiri/panduan_ai_camera.dart';
 import 'package:stuntle/pages/homepage/pantau/child/periksa_anak_page.dart';
 import 'package:stuntle/pages/homepage/pantau/baby/periksa_hamil_page.dart';
 import 'package:stuntle/pages/onboarding/onboarding_page.dart';
@@ -127,6 +129,10 @@ class RouteGenerator {
         return MaterialPageRoute(builder: (_) => const DetailDataKehamilan());
       case detailDataAnak:
         return MaterialPageRoute(builder: (_) => const DetailDataAnak());
+      case addDataMandiri:
+        return MaterialPageRoute(builder: (_) => const AddDataMandiri());
+      case panduanAiCamera:
+        return MaterialPageRoute(builder: (_) => const PanduanAiCamera());
 
       default:
         return MaterialPageRoute(

@@ -69,7 +69,7 @@ class PeriksaAnakPage extends StatelessWidget {
               //   style: bodyMedium(sizeFont: 14, colorFont: greyColor),
               // ),
               OrangeButton(
-                contentText: "Lihat Data Kehamilan",
+                contentText: "Lihat Data Tumbuh Kembang Anak",
                 maximumSize: const Size(double.infinity, 48),
                 minimumSize: const Size(348, 48),
                 onPressedFunc: () => Navigator.pushNamed(

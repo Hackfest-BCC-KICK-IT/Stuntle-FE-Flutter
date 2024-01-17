@@ -1,3 +1,4 @@
+import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_storage/get_storage.dart';
@@ -17,10 +18,12 @@ import 'package:stuntle/pages/app_page.dart';
 import 'package:stuntle/pages/onboarding/onboarding_page.dart';
 import "package:flutter_dotenv/flutter_dotenv.dart";
 
+List<CameraDescription> cameras = [];
 Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
   await GetStorage.init();
   await dotenv.load(fileName: ".env");
-
+  cameras = await availableCameras();
   runApp(const MainApp());
 }
 

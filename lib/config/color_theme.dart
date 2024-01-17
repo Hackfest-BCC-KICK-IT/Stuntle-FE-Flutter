@@ -29,3 +29,5 @@ const yellowColor = Color(0xffF8B11C);
 const lightGreenColor = Color(0xffE0FFE4);
 
 const lightYellowColor = Color(0xffFFF7CD);
+
+const brownColor = Color(0xff7D6445);
