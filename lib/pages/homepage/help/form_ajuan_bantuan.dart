@@ -23,6 +23,7 @@ class _FormAjuanBantuanPageState extends State<FormAjuanBantuanPage> {
   final TextEditingController _judulTextController = TextEditingController();
   final TextEditingController _descriptionTextController =
       TextEditingController();
+  bool isCheck = false;
 
   @override
   void dispose() {
@@ -104,8 +105,34 @@ class _FormAjuanBantuanPageState extends State<FormAjuanBantuanPage> {
                     colorFont: greyColor,
                   ),
                 ),
-                const SizedBox(
-                  height: 50,
+                Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 20),
+                  child: SizedBox(
+                    height: 60,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Checkbox(
+                          value: isCheck,
+                          onChanged: (value) {
+                            setState(() {
+                              isCheck = value!;
+                            });
+                          },
+                        ),
+                        Flexible(
+                          child: Text(
+                            "Tekan tombol kotak disamping jika bantuan yang Anda perlukan cukup genting untuk segera dibantu",
+                            softWrap: true,
+                            style: bodyMedium(
+                              colorFont: lightVioletColor,
+                              sizeFont: 12,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
                 ),
                 Align(
                   alignment: Alignment.bottomCenter,

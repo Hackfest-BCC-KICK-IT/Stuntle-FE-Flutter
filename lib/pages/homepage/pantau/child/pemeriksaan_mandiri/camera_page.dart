@@ -148,10 +148,9 @@ class _CameraPageState extends State<CameraPage> {
 
   //navigate to result page ML
   handleResultPage(String path) {
-    Navigator.pushNamedAndRemoveUntil(
+    Navigator.pushReplacementNamed(
       context,
       addDataMandiri,
-      (route) => false,
     );
   }
 
@@ -160,10 +159,9 @@ class _CameraPageState extends State<CameraPage> {
     return PopScope(
       canPop: false,
       onPopInvoked: (didPop) {
-        Navigator.pushNamedAndRemoveUntil(
+        Navigator.pushReplacementNamed(
           context,
           addDataMandiri,
-          (route) => false,
         );
       },
       child: Scaffold(

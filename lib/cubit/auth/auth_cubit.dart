@@ -37,13 +37,13 @@ class AuthCubit extends Cubit<AuthState> {
   void registerServices(
     String email,
     String password,
-    String fatherName,
+    String waNumber,
     String motherName,
   ) async {
     try {
       emit(AuthLoading());
       var response =
-          await _authServices.register(email, password, fatherName, motherName);
+          await _authServices.register(email, password, waNumber, motherName);
       if (response) {
         emit(AuthSucess());
       } else {

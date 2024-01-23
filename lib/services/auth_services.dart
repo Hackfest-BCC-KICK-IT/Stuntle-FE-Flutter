@@ -53,13 +53,13 @@ class AuthServices {
   Future<bool> register(
     String email,
     String password,
-    String fatherName,
+    String waName,
     String motherName,
   ) async {
     try {
       var response = await _dio.post("$BASE_URL/orangtua", data: {
         "namaIbu": motherName,
-        "namaAyah": fatherName,
+        "nomorTelepon": waName,
         "email": email,
         "password": password
       });

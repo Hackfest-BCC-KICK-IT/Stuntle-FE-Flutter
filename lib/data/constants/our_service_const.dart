@@ -7,7 +7,7 @@ List<Map<String, dynamic>> servicesConst = [
     'image': 'assets/images/grid1.jpg',
     'color1': const Color(0xFF5D9BF8),
     'color2': const Color.fromRGBO(93, 155, 248, 0.8),
-    'routeTo': chatPagesRoute,
+    'routeTo': dummyChat,
   },
   {
     'title': 'Pantau Kehamilan \n dan Anak',

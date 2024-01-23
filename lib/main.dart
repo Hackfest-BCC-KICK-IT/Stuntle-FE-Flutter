@@ -63,6 +63,7 @@ class MainApp extends StatelessWidget {
           )
         ],
         child: MaterialApp(
+          debugShowCheckedModeBanner: false,
           title: "stuntle",
           theme: ThemeData(
             fontFamily: "Roboto",

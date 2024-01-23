@@ -20,8 +20,7 @@ class RegisterPage extends StatefulWidget {
 class _RegisterPageState extends State<RegisterPage> {
   final TextEditingController _motherNameTextController =
       TextEditingController();
-  final TextEditingController _fatherNameTextController =
-      TextEditingController();
+  final TextEditingController _waNameTextController = TextEditingController();
   final TextEditingController _emailTextController = TextEditingController();
   final TextEditingController _passwordTextController = TextEditingController();
 
@@ -89,9 +88,9 @@ class _RegisterPageState extends State<RegisterPage> {
                         subText: "Masukkan sesuai dengan nama anda di KTP"),
                     //father name flied for user
                     TextForm(
-                        textEditingController: _fatherNameTextController,
-                        hintText: "Nama Lengkap Ayah",
-                        subText: "Masukkan sesuai dengan nama anda di KTP"),
+                        textEditingController: _waNameTextController,
+                        hintText: "Nomor Telepon/Whatsapp",
+                        subText: "Masukkan nomor telepon/whatsapp aktif Anda"),
 
                     //Email FLied for user
                     TextForm(
@@ -116,7 +115,7 @@ class _RegisterPageState extends State<RegisterPage> {
                         context.read<AuthCubit>().registerServices(
                             _emailTextController.text,
                             _passwordTextController.text,
-                            _fatherNameTextController.text,
+                            _waNameTextController.text,
                             _motherNameTextController.text);
                         // await linkPopUp(
                         //   context,
