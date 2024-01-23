@@ -102,12 +102,11 @@ class PeriksaAnakPage extends StatelessWidget {
                 ),
               ),
               CustomOutlineButton(
-                  maximumSize: const Size(double.infinity, 48),
-                  minimumSize: const Size(348, 48),
-                  contentText: "Kirim Hasil Pemeriksaan",
-                  onTapFunc: () {},
-                  shape: const RoundedRectangleBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(8)))),
+                maximumSize: const Size(double.infinity, 48),
+                minimumSize: const Size(348, 48),
+                contentText: "Kirim Hasil Pemeriksaan",
+                onTapFunc: () {},
+              ),
               const SizedBox(
                 height: 50,
               )

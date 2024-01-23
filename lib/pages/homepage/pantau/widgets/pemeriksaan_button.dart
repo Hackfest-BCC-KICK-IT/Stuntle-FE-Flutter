@@ -41,7 +41,6 @@ class PemeriksaanButton extends StatelessWidget {
       },
       minimumSize: const Size(348, 80),
       maximumSize: const Size(double.infinity, 80),
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
       childWidget: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [

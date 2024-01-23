@@ -8,7 +8,7 @@ class CustomOutlineButton extends StatelessWidget {
   final Size maximumSize;
   final Widget? childWidget;
   final String? contentText;
-  final OutlinedBorder? shape;
+
   final void Function()? onTapFunc;
   const CustomOutlineButton({
     Key? key,
@@ -16,7 +16,6 @@ class CustomOutlineButton extends StatelessWidget {
     required this.maximumSize,
     this.childWidget,
     this.contentText,
-    this.shape,
     this.onTapFunc,
   }) : super(key: key);
 
@@ -25,7 +24,7 @@ class CustomOutlineButton extends StatelessWidget {
     return OutlinedButton(
       onPressed: onTapFunc,
       style: OutlinedButton.styleFrom(
-        shape: shape,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
         padding: const EdgeInsets.symmetric(
           horizontal: 24,
           vertical: 10,

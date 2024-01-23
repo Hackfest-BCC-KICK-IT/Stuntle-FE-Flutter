@@ -111,8 +111,6 @@ class PeriksaHamilPage extends StatelessWidget {
                 minimumSize: const Size(348, 48),
                 contentText: "Kirim Hasil Pemeriksaan",
                 onTapFunc: () {},
-                shape: const RoundedRectangleBorder(
-                    borderRadius: BorderRadius.all(Radius.circular(8))),
               ),
               const SizedBox(
                 height: 50,

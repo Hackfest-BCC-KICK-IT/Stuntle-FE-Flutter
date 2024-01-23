@@ -63,8 +63,6 @@ class _FormAddDataMandiriState extends State<FormAddDataMandiri> {
             minimumSize: const Size(348, 48),
             maximumSize: const Size(double.infinity, 48),
             contentText: "Batalkan",
-            shape:
-                RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
             onTapFunc: () => Navigator.pop(context),
           ),
           const SizedBox(

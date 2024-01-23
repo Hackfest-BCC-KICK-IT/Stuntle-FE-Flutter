@@ -80,8 +80,6 @@ class DetailDataAnak extends StatelessWidget {
             maximumSize: const Size(double.infinity, 48),
             contentText: "Tampilkan Data Lebih Banyak",
             onTapFunc: () {},
-            shape:
-                RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
           ),
           const SizedBox(
             height: 20,
