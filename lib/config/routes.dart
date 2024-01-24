@@ -75,7 +75,10 @@ class RouteGenerator {
       case periksaAnakRoute:
         return MaterialPageRoute(builder: (_) => const PeriksaAnakPage());
       case periksaHamilRoute:
-        return MaterialPageRoute(builder: (_) => const PeriksaHamilPage());
+        return MaterialPageRoute(
+            builder: (_) => PeriksaHamilPage(
+                  id: settings.arguments as List<dynamic>?,
+                ));
       case searchRecipesRoute:
         return MaterialPageRoute(
             builder: (_) => SearchRecipesPage(
@@ -126,7 +129,10 @@ class RouteGenerator {
                   helpSubmit: settings.arguments as HelpSubmit,
                 ));
       case detailDataKehamilan:
-        return MaterialPageRoute(builder: (_) => const DetailDataKehamilan());
+        return MaterialPageRoute(
+            builder: (_) => DetailDataKehamilan(
+                  id: settings.arguments as List<dynamic>,
+                ));
       case detailDataAnak:
         return MaterialPageRoute(builder: (_) => const DetailDataAnak());
       case addDataMandiri:

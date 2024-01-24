@@ -34,3 +34,19 @@ final class AddPregnancyDataEror extends PregnancyState {
 
   AddPregnancyDataEror(this.text);
 }
+
+final class PemeriksaanDataLoading extends PregnancyState {}
+
+final class PemeriksaanDataSuccess extends PregnancyState {
+  final List<PemeriksaanPrenangcy> data;
+
+  PemeriksaanDataSuccess(this.data);
+}
+
+final class PemeriksaanDataNoData extends PregnancyState {}
+
+final class PemeriksaanDataEror extends PregnancyState {
+  final String text;
+
+  PemeriksaanDataEror(this.text);
+}

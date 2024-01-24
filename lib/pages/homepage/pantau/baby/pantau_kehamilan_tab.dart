@@ -52,10 +52,12 @@ class _PantauKehamilanTabState extends State<PantauKehamilanTab> {
                 return const LoadingWidget();
               } else if (state is HasPregnancyData) {
                 return showDataKehamilan(
-                    context,
-                    state.prenangcyData.namaCalonBayi,
-                    state.prenangcyData.tanggalPertamaHaid.toString(),
-                    periksaHamilRoute);
+                  context,
+                  state.prenangcyData.namaCalonBayi,
+                  state.prenangcyData.tanggalPertamaHaid.toString(),
+                  periksaHamilRoute,
+                  state.prenangcyData.fkPemeriksaanIds,
+                );
               } else if (state is AddPregnancyDataSuccess) {
                 return showDataKehamilan(
                     context,
@@ -127,8 +129,9 @@ Widget showDataKehamilan(
   BuildContext ctx,
   String? name,
   String date,
-  String route,
-) =>
+  String route, [
+  List<dynamic>? id,
+]) =>
     Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16),
       child: Column(
@@ -154,7 +157,8 @@ Widget showDataKehamilan(
           CustomOutlineButton(
             minimumSize: const Size(318, 48),
             maximumSize: const Size(double.infinity, 48),
-            onTapFunc: () => Navigator.pushNamed(ctx, route, arguments: name),
+            onTapFunc: () =>
+                Navigator.pushNamed(ctx, route, arguments: id ?? name),
             childWidget: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [

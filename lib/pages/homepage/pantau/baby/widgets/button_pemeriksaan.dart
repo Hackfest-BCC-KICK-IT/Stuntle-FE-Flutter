@@ -1,21 +1,23 @@
 import 'package:flutter/material.dart';
 
 import 'package:stuntle/config/color_theme.dart';
+import 'package:stuntle/data/model/pemeriksaan_kehamilan.dart';
 import 'package:stuntle/pages/auth/widget/tap_text.dart';
-import 'package:stuntle/pages/homepage/pantau/widgets/detail_popup.dart';
+import 'package:stuntle/pages/homepage/pantau/baby/widgets/detail_pop_up_kehamilan.dart';
 import 'package:stuntle/pages/widget/outline_custom_button.dart';
 
-class PemeriksaanButton extends StatelessWidget {
+class PemeriksaanButtonKehamilan extends StatelessWidget {
   final String text2;
   final String text1;
   final int index;
-  final bool isChild;
-  const PemeriksaanButton({
+  final PemeriksaanPrenangcy data;
+
+  const PemeriksaanButtonKehamilan({
     Key? key,
     required this.text2,
     required this.text1,
     required this.index,
-    required this.isChild,
+    required this.data,
   }) : super(key: key);
 
   Color text2Color() {
@@ -23,8 +25,6 @@ class PemeriksaanButton extends StatelessWidget {
       case "baik":
         return greenColor;
       case "lemah":
-        return yellowColor;
-      case "berpotensi Stunting":
         return yellowColor;
 
       default:
@@ -40,7 +40,7 @@ class PemeriksaanButton extends StatelessWidget {
         onTapFunc: () async {
           await showDialog(
             context: context,
-            builder: (context) => DetailPopUp(isChild: isChild),
+            builder: (context) => DetailPopUpKehamilan(data: data),
           );
         },
         minimumSize: const Size(348, 80),

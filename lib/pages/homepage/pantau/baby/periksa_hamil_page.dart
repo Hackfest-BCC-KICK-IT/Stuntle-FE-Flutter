@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import 'package:stuntle/config/color_theme.dart';
 import 'package:stuntle/config/font_theme.dart';
 import 'package:stuntle/config/route_name.dart';
@@ -7,7 +8,11 @@ import 'package:stuntle/pages/widget/orange_button.dart';
 import 'package:stuntle/pages/widget/outline_custom_button.dart';
 
 class PeriksaHamilPage extends StatelessWidget {
-  const PeriksaHamilPage({super.key});
+  final List<dynamic>? id;
+  const PeriksaHamilPage({
+    Key? key,
+    this.id,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -69,20 +74,7 @@ class PeriksaHamilPage extends StatelessWidget {
               const SizedBox(
                 height: 10,
               ),
-              // Text(
-              //   'Belum ada data kehamilan saat ini, periksakan kehamilanmu untuk melihat data perkembangannya',
-              //   textAlign: TextAlign.center,
-              //   style: bodyMedium(sizeFont: 14, colorFont: greyColor),
-              // ),
-              OrangeButton(
-                contentText: "Lihat Data Kehamilan",
-                maximumSize: const Size(double.infinity, 48),
-                minimumSize: const Size(348, 48),
-                onPressedFunc: () => Navigator.pushNamed(
-                  context,
-                  detailDataKehamilan,
-                ),
-              ),
+              pemeriksaanWidget(context),
               Padding(
                 padding: const EdgeInsets.only(
                   top: 20,
@@ -119,6 +111,27 @@ class PeriksaHamilPage extends StatelessWidget {
           ),
         ),
       ),
+    );
+  }
+
+  Widget pemeriksaanWidget(BuildContext ctx) {
+    if (id != null && id!.isNotEmpty) {
+      return OrangeButton(
+        contentText: "Lihat Data Kehamilan",
+        maximumSize: const Size(double.infinity, 48),
+        minimumSize: const Size(348, 48),
+        onPressedFunc: () => Navigator.pushNamed(
+          ctx,
+          detailDataKehamilan,
+          arguments: id,
+        ),
+      );
+    }
+
+    return Text(
+      'Belum ada data kehamilan saat ini, periksakan kehamilanmu untuk melihat data perkembangannya',
+      textAlign: TextAlign.center,
+      style: bodyMedium(sizeFont: 14, colorFont: greyColor),
     );
   }
 }

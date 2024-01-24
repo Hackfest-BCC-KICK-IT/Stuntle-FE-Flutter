@@ -1,4 +1,5 @@
 import 'package:bloc/bloc.dart';
+import 'package:stuntle/data/model/pemeriksaan_kehamilan.dart';
 import 'package:stuntle/data/model/prenangcy.dart';
 import 'package:stuntle/services/prenangcy_services.dart';
 
@@ -39,21 +40,18 @@ class PregnancyCubit extends Cubit<PregnancyState> {
     }
   }
 
-  // void updatePrenangcyData(String name, String date) async {
-  //   try {
-  //     emit(AddPregnancyDataLoading());
-  //     await Cache.writeData(key: prenagcyData, value: {
-  //       'name': name,
-  //       'date': date,
-  //     });
-  //     emit(AddPregnancyDataSuccess());
-  //   } catch (eror) {
-  //     emit(AddPregnancyDataEror(eror.toString()));
-  //   }
-  // }
+  void getDataPemeriksaan(List<dynamic> id) async {
+    emit(PemeriksaanDataLoading());
+    try {
+      var responnse = await _pregnancyServices.fetchDataPemeriksaan(id);
 
-  // void removePrenangcyData() async {
-  //   await Cache.deleteData(prenagcyData);
-  //   emit(AddPregnancyDataSuccess());
-  // }
+      if (responnse.isNotEmpty) {
+        emit(PemeriksaanDataSuccess(responnse));
+      } else {
+        emit(PemeriksaanDataNoData());
+      }
+    } catch (eror) {
+      emit(PemeriksaanDataEror(eror.toString()));
+    }
+  }
 }
