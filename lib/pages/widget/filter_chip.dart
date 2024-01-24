@@ -22,22 +22,30 @@ class _FilterChipCustomState extends State<FilterChipCustom> {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(6.0),
-      child: FilterChip(
-        showCheckmark: false,
-        label: Text(widget.filter.text),
-        labelStyle: TextStyle(
-          color: widget.filter.isSelected ? whiteColor : lightVioletColor,
-        ),
-        backgroundColor:
-            widget.filter.isSelected ? lightVioletColor : whiteColor,
-        shape: RoundedRectangleBorder(
-          side: const BorderSide(
-            color: lightVioletColor,
+      child: Material(
+        color: Colors.transparent,
+        child: InkWell(
+          onTap: () {
+            if (widget.onSelectedFunc != null) {
+              widget.onSelectedFunc!(!widget.filter.isSelected);
+            }
+          },
+          child: Container(
+            padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+            decoration: BoxDecoration(
+              color: widget.filter.isSelected ? bgFilterChip : whiteColor,
+              borderRadius: BorderRadius.circular(16),
+              border: Border.all(color: lightVioletColor),
+            ),
+            child: Text(
+              widget.filter.text,
+              style: TextStyle(
+                color: widget.filter.isSelected ? whiteColor : bgFilterChip,
+                fontWeight: FontWeight.w500,
+              ),
+            ),
           ),
-          borderRadius: BorderRadius.circular(16),
         ),
-        selected: widget.filter.isSelected,
-        onSelected: widget.onSelectedFunc,
       ),
     );
   }

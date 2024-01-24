@@ -31,3 +31,9 @@ const lightGreenColor = Color(0xffE0FFE4);
 const lightYellowColor = Color(0xffFFF7CD);
 
 const brownColor = Color(0xff7D6445);
+
+const purpleRecepies = Color(0xffEBDFE7);
+
+const orangeRecepies = Color(0xffF9F0E6);
+
+const bgFilterChip = Color(0xff9D738E);

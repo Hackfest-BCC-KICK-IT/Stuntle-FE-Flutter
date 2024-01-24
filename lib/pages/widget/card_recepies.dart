@@ -45,7 +45,7 @@ class CardRecepies extends StatelessWidget {
                 Row(
                   children: [
                     Material(
-                      color: orangeColor,
+                      color: orangeRecepies,
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(10),
                       ),
@@ -56,6 +56,7 @@ class CardRecepies extends StatelessWidget {
                           recepiesData.jenis,
                           style: headline(
                             sizeFont: 12,
+                            colorFont: orangeColor,
                           ),
                         ),
                       ),
@@ -64,7 +65,7 @@ class CardRecepies extends StatelessWidget {
                       width: 6,
                     ),
                     Material(
-                      color: lightVioletColor,
+                      color: purpleRecepies,
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(10),
                       ),
@@ -75,6 +76,7 @@ class CardRecepies extends StatelessWidget {
                           recepiesData.targetUsiaResep,
                           style: headline(
                             sizeFont: 12,
+                            colorFont: lightVioletColor,
                           ),
                         ),
                       ),
@@ -83,10 +85,16 @@ class CardRecepies extends StatelessWidget {
                 )
               ],
             ),
-            Image.network(
-              recepiesData.urlGambar,
-              width: 84,
-              height: 74,
+            ClipRRect(
+              borderRadius: BorderRadius.circular(8),
+              child: SizedBox(
+                width: 84,
+                height: 74,
+                child: Image.network(
+                  recepiesData.urlGambar,
+                  fit: BoxFit.cover,
+                ),
+              ),
             )
           ],
         ),
