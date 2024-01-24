@@ -6,6 +6,7 @@ import 'package:stuntle/config/route_name.dart';
 import 'package:stuntle/cubit/health/health_cubit.dart';
 import 'package:stuntle/data/constants/our_service_const.dart';
 import 'package:stuntle/data/model/user.dart';
+import 'package:stuntle/pages/widget/caraousel_widget.dart';
 import 'package:stuntle/pages/widget/loading_widget.dart';
 
 import 'package:stuntle/pages/widget/orange_button.dart';
@@ -24,7 +25,7 @@ class _HomePageState extends State<HomePage> {
       body: SafeArea(
           child: SingleChildScrollView(
               child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 16),
+        padding: const EdgeInsets.only(left: 16, right: 16, bottom: 16),
         child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
           Padding(
             padding: const EdgeInsets.only(top: 42),
@@ -119,6 +120,39 @@ class _HomePageState extends State<HomePage> {
           ),
           Padding(
             padding: const EdgeInsets.only(top: 36, bottom: 2),
+            child: Text(
+              "Artikel Rekomendasi",
+              style: heading1(),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(bottom: 16),
+            child: Text(
+              "Berikut rekomendasi artikel sebagai panduan bagi ibu dalam memerangi stunting sejak dini",
+              style: bodyMedium(
+                sizeFont: 14,
+                colorFont: greyColor,
+              ),
+            ),
+          ),
+          SizedBox(
+            height: 200,
+            child: MyCarousel(
+              autoPlay: true,
+              items: List.generate(
+                3,
+                (index) => Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 15),
+                  child: Image.asset(
+                    "assets/images/banner-${index + 1}.jpg",
+                    fit: BoxFit.contain,
+                  ),
+                ),
+              ),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(top: 16, bottom: 2),
             child: Text(
               "Layanan Kami",
               style: heading1(),
