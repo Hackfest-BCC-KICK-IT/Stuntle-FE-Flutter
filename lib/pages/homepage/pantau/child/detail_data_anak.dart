@@ -7,6 +7,7 @@ import 'package:stuntle/config/route_name.dart';
 import 'package:stuntle/cubit/child/child_cubit.dart';
 
 import 'package:stuntle/pages/homepage/pantau/widgets/acrodion.dart';
+import 'package:stuntle/pages/homepage/pantau/widgets/grafik_pertumbuhan.dart';
 import 'package:stuntle/pages/homepage/pantau/widgets/pemeriksaan_button.dart';
 
 import 'package:stuntle/pages/widget/app_bar.dart';
@@ -56,6 +57,25 @@ class _DetailDataAnakState extends State<DetailDataAnak> {
 
           //Acrodion hasil kondisi anak dari Ai
           const AccrodionKondisiAnak(),
+          Text(
+            "Grafik Pertumbuhan Anak",
+            style: heading1(),
+          ),
+          Text(
+            "Berikut adalah grafik pertumbuhan dari data tumbuh kembang anakmu",
+            style: bodyMedium(
+              sizeFont: 14,
+              colorFont: greyColor,
+            ),
+          ),
+          const SizedBox(
+            height: 20,
+          ),
+          //grafik pertumbuhan anak
+          const SizedBox(
+            height: 370,
+            child: GrafikPertumbuhanAnak(),
+          ),
           Text(
             "Data Tumbuh Kembang Anak",
             style: heading1(),
@@ -129,7 +149,10 @@ class _DetailDataAnakState extends State<DetailDataAnak> {
               context,
               addDataMandiri,
             ),
-          )
+          ),
+          const SizedBox(
+            height: 40,
+          ),
         ],
       ),
     );
