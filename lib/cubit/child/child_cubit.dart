@@ -1,5 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:stuntle/data/model/child_data.dart';
+import 'package:stuntle/data/model/pemeriksaan_anak.dart';
 import 'package:stuntle/services/child_services.dart';
 import 'package:equatable/equatable.dart';
 
@@ -35,6 +36,20 @@ class ChildCubit extends Cubit<ChildState> {
           : emit(AddChildDataEror("Faild add Child"));
     } catch (eror) {
       emit(AddChildDataEror(eror.toString()));
+    }
+  }
+
+  void fetchDataPemeriksaan(List<dynamic> ids) async {
+    emit(DataPemeriksaanLoading());
+    try {
+      var responnse = await _childServices.fetchPemeriksaanChild(ids);
+      if (responnse.isNotEmpty) {
+        emit(DataPemeriksaanSuccess(data: responnse));
+      } else {
+        emit(DataPemeriksaanNoData());
+      }
+    } catch (eror) {
+      emit(DataPemeriksaanEror(eror.toString()));
     }
   }
 }

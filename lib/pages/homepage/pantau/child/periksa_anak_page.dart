@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import 'package:stuntle/config/color_theme.dart';
 import 'package:stuntle/config/font_theme.dart';
 import 'package:stuntle/config/route_name.dart';
@@ -8,7 +9,11 @@ import 'package:stuntle/pages/widget/orange_button.dart';
 import 'package:stuntle/pages/widget/outline_custom_button.dart';
 
 class PeriksaAnakPage extends StatelessWidget {
-  const PeriksaAnakPage({super.key});
+  final List<dynamic> ids;
+  const PeriksaAnakPage({
+    Key? key,
+    required this.ids,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -63,21 +68,7 @@ class PeriksaAnakPage extends StatelessWidget {
               const SizedBox(
                 height: 10,
               ),
-              // Text(
-              //   'Belum ada data anak saat ini, periksakan anakmu untuk melihat data tumbuh kembangnya',
-              //   textAlign: TextAlign.center,
-              //   style: bodyMedium(sizeFont: 14, colorFont: greyColor),
-              // ),
-              OrangeButton(
-                contentText: "Lihat Data Tumbuh Kembang Anak",
-                maximumSize: const Size(double.infinity, 48),
-                minimumSize: const Size(348, 48),
-                onPressedFunc: () => Navigator.pushNamed(
-                  context,
-                  detailDataAnak,
-                ),
-              ),
-
+              childPemeriksaanWidget(context),
               Padding(
                 padding: const EdgeInsets.only(
                   top: 20,
@@ -114,6 +105,26 @@ class PeriksaAnakPage extends StatelessWidget {
           ),
         ),
       ),
+    );
+  }
+
+  Widget childPemeriksaanWidget(BuildContext ctx) {
+    if (ids.isNotEmpty) {
+      return OrangeButton(
+        contentText: "Lihat Data Tumbuh Kembang Anak",
+        maximumSize: const Size(double.infinity, 48),
+        minimumSize: const Size(348, 48),
+        onPressedFunc: () => Navigator.pushNamed(
+          ctx,
+          detailDataAnak,
+          arguments: ids,
+        ),
+      );
+    }
+    return Text(
+      'Belum ada data anak saat ini, periksakan anakmu untuk melihat data tumbuh kembangnya',
+      textAlign: TextAlign.center,
+      style: bodyMedium(sizeFont: 14, colorFont: greyColor),
     );
   }
 }

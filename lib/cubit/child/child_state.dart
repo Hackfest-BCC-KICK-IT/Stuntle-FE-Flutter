@@ -41,3 +41,19 @@ final class AddChildDataEror extends ChildState {
   @override
   List<Object> get props => [text];
 }
+
+final class DataPemeriksaanLoading extends ChildState {}
+
+final class DataPemeriksaanSuccess extends ChildState {
+  final List<PemeriksaanChild> data;
+
+  DataPemeriksaanSuccess({required this.data});
+}
+
+final class DataPemeriksaanNoData extends ChildState {}
+
+final class DataPemeriksaanEror extends ChildState {
+  final String text;
+
+  DataPemeriksaanEror(this.text);
+}

@@ -1,29 +1,25 @@
 import 'package:flutter/material.dart';
 
 import 'package:stuntle/config/color_theme.dart';
+import 'package:stuntle/data/model/pemeriksaan_anak.dart';
 import 'package:stuntle/pages/auth/widget/tap_text.dart';
 import 'package:stuntle/pages/homepage/pantau/widgets/detail_popup.dart';
 import 'package:stuntle/pages/widget/outline_custom_button.dart';
 
-class PemeriksaanButton extends StatelessWidget {
-  final String text2;
-  final String text1;
+class PemeriksaanButtonChild extends StatelessWidget {
   final int index;
-  final bool isChild;
-  const PemeriksaanButton({
+  final PemeriksaanChild data;
+
+  const PemeriksaanButtonChild({
     Key? key,
-    required this.text2,
-    required this.text1,
     required this.index,
-    required this.isChild,
+    required this.data,
   }) : super(key: key);
 
   Color text2Color() {
-    switch (text2) {
+    switch (data.statusAnak) {
       case "baik":
         return greenColor;
-      case "lemah":
-        return yellowColor;
       case "berpotensi Stunting":
         return yellowColor;
 
@@ -40,7 +36,9 @@ class PemeriksaanButton extends StatelessWidget {
         onTapFunc: () async {
           await showDialog(
             context: context,
-            builder: (context) => DetailPopUp(isChild: isChild),
+            builder: (context) => DetailPopUpChild(
+              data: data,
+            ),
           );
         },
         minimumSize: const Size(348, 80),
@@ -57,8 +55,8 @@ class PemeriksaanButton extends StatelessWidget {
                   height: 2,
                 ),
                 TapText(
-                  text1: text1,
-                  text2: text2,
+                  text1: "Status Gizi Anak:  ",
+                  text2: data.statusAnak,
                   text2Color: text2Color(),
                 )
               ],

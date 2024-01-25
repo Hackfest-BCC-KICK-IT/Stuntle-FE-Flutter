@@ -125,7 +125,7 @@ class _AddDataAnakWidgetState extends State<AddDataAnakWidget> {
               if (isNotEmptyForm()) {
                 Child data = Child(
                     namaAnak: nameTextController.text,
-                    tanggalLahirAnak: _selectedDate!,
+                    tanggalLahir: _selectedDate!,
                     jenisKelamin: _selectedChildGender!,
                     kondisiLahir: _selectedChildCondition!,
                     beratBadanLahir: double.parse(weightTextController.text),

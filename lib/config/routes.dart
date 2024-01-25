@@ -73,7 +73,10 @@ class RouteGenerator {
         return MaterialPageRoute(builder: (_) => const GrupPage());
 
       case periksaAnakRoute:
-        return MaterialPageRoute(builder: (_) => const PeriksaAnakPage());
+        return MaterialPageRoute(
+            builder: (_) => PeriksaAnakPage(
+                  ids: settings.arguments as List<dynamic>,
+                ));
       case periksaHamilRoute:
         return MaterialPageRoute(
             builder: (_) => PeriksaHamilPage(
@@ -134,7 +137,9 @@ class RouteGenerator {
                   id: settings.arguments as List<dynamic>,
                 ));
       case detailDataAnak:
-        return MaterialPageRoute(builder: (_) => const DetailDataAnak());
+        return MaterialPageRoute(
+            builder: (_) =>
+                DetailDataAnak(ids: settings.arguments as List<dynamic>));
       case addDataMandiri:
         return MaterialPageRoute(builder: (_) => const AddDataMandiri());
       case panduanAiCamera:

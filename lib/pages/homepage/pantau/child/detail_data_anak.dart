@@ -1,15 +1,37 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+
 import 'package:stuntle/config/color_theme.dart';
 import 'package:stuntle/config/font_theme.dart';
 import 'package:stuntle/config/route_name.dart';
+import 'package:stuntle/cubit/child/child_cubit.dart';
+
 import 'package:stuntle/pages/homepage/pantau/widgets/acrodion.dart';
 import 'package:stuntle/pages/homepage/pantau/widgets/pemeriksaan_button.dart';
+
 import 'package:stuntle/pages/widget/app_bar.dart';
+import 'package:stuntle/pages/widget/loading_widget.dart';
+
 import 'package:stuntle/pages/widget/orange_button.dart';
 import 'package:stuntle/pages/widget/outline_custom_button.dart';
 
-class DetailDataAnak extends StatelessWidget {
-  const DetailDataAnak({super.key});
+class DetailDataAnak extends StatefulWidget {
+  final List<dynamic> ids;
+  const DetailDataAnak({
+    Key? key,
+    required this.ids,
+  }) : super(key: key);
+
+  @override
+  State<DetailDataAnak> createState() => _DetailDataAnakState();
+}
+
+class _DetailDataAnakState extends State<DetailDataAnak> {
+  @override
+  void initState() {
+    context.read<ChildCubit>().fetchDataPemeriksaan(widget.ids);
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -48,30 +70,45 @@ class DetailDataAnak extends StatelessWidget {
           const SizedBox(
             height: 20,
           ),
-          const PemeriksaanButton(
-            text2: "Baik",
-            index: 3,
-            text1: "Status Gizi Anak:",
-            isChild: true,
+
+          BlocConsumer<ChildCubit, ChildState>(
+            listener: (context, state) {
+              if (state is DataPemeriksaanEror) {
+                Navigator.pushReplacementNamed(
+                  context,
+                  "/eror",
+                  arguments: state.text,
+                );
+              }
+            },
+            builder: (context, state) {
+              if (state is DataPemeriksaanLoading) {
+                return const Padding(
+                  padding: EdgeInsets.symmetric(vertical: 10),
+                  child: LoadingWidget(),
+                );
+              } else if (state is DataPemeriksaanSuccess) {
+                {
+                  return ListView.builder(
+                    itemCount: state.data.length,
+                    shrinkWrap: true,
+                    physics: const AlwaysScrollableScrollPhysics(),
+                    itemBuilder: (context, index) {
+                      return PemeriksaanButtonChild(
+                        index: index,
+                        data: state.data[index],
+                      );
+                    },
+                  );
+                }
+              }
+              return const Padding(
+                padding: EdgeInsets.symmetric(vertical: 10),
+                child: Text("NO DATA"),
+              );
+            },
           ),
-          const SizedBox(
-            height: 14,
-          ),
-          const PemeriksaanButton(
-            text2: "Lemah",
-            index: 2,
-            text1: "Status Gizi Anak:",
-            isChild: true,
-          ),
-          const SizedBox(
-            height: 14,
-          ),
-          const PemeriksaanButton(
-            text2: "Beresiko",
-            index: 1,
-            text1: "Status Gizi Anak:",
-            isChild: true,
-          ),
+
           const SizedBox(
             height: 20,
           ),

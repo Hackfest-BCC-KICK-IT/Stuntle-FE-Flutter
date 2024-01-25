@@ -114,12 +114,16 @@ Widget showProfileAnak(
                   child: CustomOutlineButton(
                     minimumSize: const Size(318, 48),
                     maximumSize: const Size(double.infinity, 48),
-                    onTapFunc: () => Navigator.pushNamed(ctx, route),
+                    onTapFunc: () => Navigator.pushNamed(
+                      ctx,
+                      route,
+                      arguments: data[index]!.fkDataPemeriksaanAnak,
+                    ),
                     childWidget: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
-                          data[index]!.namaAnak,
+                          data[index]!.namaAnak!,
                           style: headline(
                             sizeFont: 14,
                             colorFont: violetColor,

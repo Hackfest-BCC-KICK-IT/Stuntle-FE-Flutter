@@ -2,13 +2,14 @@ import 'package:flutter/material.dart';
 
 import 'package:stuntle/config/color_theme.dart';
 import 'package:stuntle/config/font_theme.dart';
+import 'package:stuntle/data/model/pemeriksaan_anak.dart';
 import 'package:stuntle/pages/auth/widget/tap_text.dart';
 
-class DetailPopUp extends StatelessWidget {
-  final bool isChild;
-  const DetailPopUp({
+class DetailPopUpChild extends StatelessWidget {
+  final PemeriksaanChild data;
+  const DetailPopUpChild({
     Key? key,
-    required this.isChild,
+    required this.data,
   }) : super(key: key);
 
   @override
@@ -27,16 +28,16 @@ class DetailPopUp extends StatelessWidget {
           const SizedBox(
             height: 10,
           ),
-          const TapText(
+          TapText(
             text1: "Tanggal Pemeriksaan: ",
-            text2: "18 Okt 2023",
+            text2: "${data.tanggalPemeriksaan}",
           ),
           const SizedBox(
             height: 5,
           ),
-          const TapText(
+          TapText(
             text1: "Tempat Pemeriksaan: ",
-            text2: "Bantar Batu",
+            text2: "${data.tempatPemeriksaan}",
           ),
           const SizedBox(
             height: 5,
@@ -44,9 +45,9 @@ class DetailPopUp extends StatelessWidget {
           const SizedBox(
             height: 5,
           ),
-          const TapText(
+          TapText(
             text1: "Diperiksa Oleh: ",
-            text2: "Dr. Sumiati",
+            text2: "${data.namaPemeriksa}",
           ),
           const SizedBox(
             height: 5,
@@ -60,83 +61,41 @@ class DetailPopUp extends StatelessWidget {
           const SizedBox(
             height: 10,
           ),
-          hasilPemeriksaan(),
-          const SizedBox(
-            height: 5,
-          ),
-          const TapText(
-            text1: "Pesan Tambahan: ",
-            text2: "Jaga pola makannya ya bunda biar bayinya tetap sehat",
-          ),
-        ],
-      ),
-    );
-  }
-
-  Widget hasilPemeriksaan() {
-    if (isChild) {
-      return const Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
           TapText(
             text1: "Umur Anak: ",
-            text2: "1 Tahun 3 Bulan 4 Hari",
+            text2: "${data.umurAnak}",
           ),
-          SizedBox(
+          const SizedBox(
             height: 5,
           ),
           TapText(
             text1: "Tinggi Anak: ",
-            text2: "88 cm",
+            text2: "${data.tinggiAnak}",
           ),
-          SizedBox(
+          const SizedBox(
             height: 5,
           ),
           TapText(
             text1: "Berat Badan Anak: ",
-            text2: "10 kg",
+            text2: "${data.beratBadanAnak}",
           ),
-          SizedBox(
+          const SizedBox(
             height: 5,
           ),
           TapText(
             text1: "Status Gizi Anak: ",
-            text2: "Baik",
+            text2: "${data.statusAnak}",
             text2Color: greenColor,
           ),
+          const SizedBox(
+            height: 5,
+          ),
+          TapText(
+            text1: "Pesan Tambahan: ",
+            text2: "${data.pesanTambahan}",
+          ),
         ],
-      );
-    }
-    return const Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        TapText(
-          text1: "Usia Kandungan: ",
-          text2: "16 minggu",
-        ),
-        SizedBox(
-          height: 5,
-        ),
-        TapText(
-          text1: "Tekanan Darah: ",
-          text2: "120/80 mmHg",
-        ),
-        SizedBox(
-          height: 5,
-        ),
-        TapText(
-          text1: "Berat Badan Ibu: ",
-          text2: "89 kg",
-        ),
-        SizedBox(
-          height: 5,
-        ),
-        TapText(
-          text1: "Status Kehamilan: ",
-          text2: "Baik",
-          text2Color: greenColor,
-        ),
-      ],
+      ),
     );
   }
 }
