@@ -1,4 +1,3 @@
-import 'package:chat_bubbles/chat_bubbles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:grouped_list/grouped_list.dart';
@@ -6,7 +5,10 @@ import 'package:stuntle/config/color_theme.dart';
 import 'package:stuntle/config/font_theme.dart';
 import 'package:stuntle/cubit/message/message_cubit.dart';
 import 'package:stuntle/data/model/message.dart';
+import 'package:stuntle/pages/homepage/chat/widgets/acrodion_chat.dart';
+import 'package:stuntle/pages/homepage/chat/widgets/chat_widget.dart';
 import 'package:stuntle/pages/widget/loading_widget.dart';
+import 'package:flutter_chat_bubble/chat_bubble.dart';
 
 class ChatPages extends StatefulWidget {
   const ChatPages({Key? key}) : super(key: key);
@@ -38,7 +40,10 @@ class _ChatPagesState extends State<ChatPages> {
         backgroundColor: blueColor,
         leading: IconButton(
             onPressed: () => Navigator.pop(context),
-            icon: const Icon(Icons.arrow_back)),
+            icon: const Icon(
+              Icons.arrow_back,
+              color: whiteColor,
+            )),
         title: Row(
           children: [
             Image.asset(
@@ -84,32 +89,46 @@ class _ChatPagesState extends State<ChatPages> {
                     floatingHeader: true,
                     elements: listMessage,
                     groupBy: (message) => DateTime(
-                          message.createdAt.year,
-                          message.createdAt.month,
-                          message.createdAt.day,
+                          message.createdAt!.year,
+                          message.createdAt!.month,
+                          message.createdAt!.day,
                         ),
                     groupHeaderBuilder: (Message message) => Center(
-                          child: DateChip(
-                            date: message.createdAt,
-                            color: greyWhite,
+                          child: Container(
+                            padding: const EdgeInsets.all(3),
+                            decoration: BoxDecoration(
+                                color: greyWhite,
+                                borderRadius: BorderRadius.circular(5)),
+                            child: Text(
+                                "${message.createdAt!.day} / ${message.createdAt!.month} / ${message.createdAt!.year} "),
                           ),
                         ),
                     itemBuilder: (context, Message message) => Padding(
-                          padding: const EdgeInsets.symmetric(vertical: 16),
-                          child: BubbleSpecialThree(
-                            text: message.message,
-                            color: message.isSentByMe ? blueColor : greyWhite,
-                            tail: true,
-                            isSender: message.isSentByMe,
-                            textStyle: TextStyle(
-                                color: message.isSentByMe
-                                    ? Colors.white
-                                    : Colors.black,
-                                fontSize: 16),
+                        padding: const EdgeInsets.symmetric(vertical: 16),
+                        child: ChatBubble(
+                          clipper: ChatBubbleClipper5(
+                            type: message.isSentByMe!
+                                ? BubbleType.sendBubble
+                                : BubbleType.receiverBubble,
                           ),
-                        ));
+                          alignment: message.isSentByMe!
+                              ? Alignment.topRight
+                              : Alignment.topLeft,
+                          backGroundColor:
+                              message.isSentByMe! ? blueColor : greyWhite,
+                          child: message.isSentByMe!
+                              ? SenderChatWidget(message: message.message!)
+                              : ResponseChatWidget(
+                                  message: message.message!,
+                                  isButton: message.isButton!),
+                        )));
               },
             ),
+          ),
+          //* Accrodion chat
+          const Align(
+            alignment: Alignment.topRight,
+            child: AcrodionChat(),
           ),
           BlocListener<MessageCubit, MessageState>(
             listener: (context, state) {
@@ -143,19 +162,17 @@ class _ChatPagesState extends State<ChatPages> {
                           onPressed: () {
                             setState(() {
                               listMessage.add(Message(
-                                id: listMessage.length + 1,
                                 message: _messageEditingController.text,
-                                fkOrtuId: 997,
                                 createdAt: DateTime.now(),
                                 isSentByMe: true,
+                                isButton: false,
                               ));
 
                               listMessage.add(Message(
-                                id: listMessage.length + 1,
                                 message: "Catas sedang mengetik",
-                                fkOrtuId: 997,
                                 createdAt: DateTime.now(),
                                 isSentByMe: false,
+                                isButton: false,
                               ));
                             });
                             context
