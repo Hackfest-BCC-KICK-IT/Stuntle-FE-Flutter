@@ -39,6 +39,13 @@ class _RegisterPageState extends State<RegisterPage> {
         listener: (context, state) {
           if (state is AuthSucess) {
             Navigator.pushReplacementNamed(context, loginRoute);
+          } else if (state is AuthEror) {
+            ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(
+                content: Text(state.toString()),
+                duration: const Duration(seconds: 2),
+              ),
+            );
           }
         },
         builder: (context, state) {
