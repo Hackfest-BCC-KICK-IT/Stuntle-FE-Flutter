@@ -148,88 +148,119 @@ class _CameraPageState extends State<CameraPage> {
 
   //navigate to result page ML
   handleResultPage(String path) {
-    Navigator.pushReplacementNamed(
-      context,
-      addDataMandiri,
-    );
+    Navigator.pop(context);
   }
 
   @override
   Widget build(BuildContext context) {
-    return PopScope(
-      canPop: false,
-      onPopInvoked: (didPop) {
-        Navigator.pushReplacementNamed(
-          context,
-          addDataMandiri,
-        );
-      },
-      child: Scaffold(
-          body: _isCameraInitialized
-              ? Column(
-                  children: [
-                    Expanded(
-                      child: AspectRatio(
-                        aspectRatio: 1 / controller!.value.aspectRatio,
-                        child: Stack(children: [
-                          controller!.buildPreview(),
-                          SafeArea(
-                            child: Align(
-                                alignment: Alignment.topCenter,
-                                child: Padding(
-                                  padding: const EdgeInsets.only(
-                                      left: 15, right: 15, top: 25),
-                                  child: Column(
-                                    children: [
-                                      Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceBetween,
-                                        children: [
-                                          IconButton(
-                                              onPressed: () {
-                                                toggleFlash();
-                                              },
-                                              icon: Icon(
-                                                _isFlashOn
-                                                    ? Icons.flash_on
-                                                    : Icons.flash_off,
-                                                color: orangeColor,
-                                              )),
-                                          IconButton(
-                                              onPressed: () {
-                                                Navigator
-                                                    .pushNamedAndRemoveUntil(
-                                                  context,
-                                                  addDataMandiri,
-                                                  (route) => false,
-                                                );
-                                              },
-                                              icon: const Icon(
-                                                Icons.close_sharp,
-                                                color: orangeColor,
-                                              ))
-                                        ],
-                                      ),
-                                    ],
-                                  ),
-                                )),
-                          ),
-                        ]),
-                      ),
+    return Scaffold(
+        body: _isCameraInitialized
+            ? Column(
+                children: [
+                  Expanded(
+                    child: AspectRatio(
+                      aspectRatio: 1 / controller!.value.aspectRatio,
+                      child: Stack(children: [
+                        controller!.buildPreview(),
+                        SafeArea(
+                          child: Align(
+                              alignment: Alignment.topCenter,
+                              child: Padding(
+                                padding: const EdgeInsets.only(
+                                    left: 15, right: 15, top: 25),
+                                child: Column(
+                                  children: [
+                                    Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        IconButton(
+                                            onPressed: () {
+                                              toggleFlash();
+                                            },
+                                            icon: Icon(
+                                              _isFlashOn
+                                                  ? Icons.flash_on
+                                                  : Icons.flash_off,
+                                              color: orangeColor,
+                                            )),
+                                        IconButton(
+                                            onPressed: () {
+                                              Navigator.pop(context);
+                                            },
+                                            icon: const Icon(
+                                              Icons.close_sharp,
+                                              color: orangeColor,
+                                            ))
+                                      ],
+                                    ),
+                                  ],
+                                ),
+                              )),
+                        ),
+                      ]),
                     ),
-                    Container(
-                      width: double.infinity,
-                      height: 100,
-                      padding: const EdgeInsets.only(top: 10, bottom: 20),
-                      color: whiteColor,
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: [
-                          InkWell(
-                              onTap: () async {
-                                await pickImageFromGallery();
-                              },
-                              child: Container(
+                  ),
+                  Container(
+                    width: double.infinity,
+                    height: 100,
+                    padding: const EdgeInsets.only(top: 10, bottom: 20),
+                    color: whiteColor,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        InkWell(
+                            onTap: () async {
+                              await pickImageFromGallery();
+                            },
+                            child: Container(
+                              width: 32,
+                              height: 32,
+                              decoration: BoxDecoration(
+                                color: orangeColor,
+                                borderRadius: BorderRadius.circular(5),
+                              ),
+                              child: const Icon(
+                                Icons.image_outlined,
+                                color: whiteColor,
+                              ),
+                            )),
+                        InkWell(
+                            onTap: () async {
+                              XFile? rawImage = await takePicture();
+                              File imageFile = File(rawImage!.path);
+
+                              handleResultPage(rawImage.path);
+
+                              int currentUnix =
+                                  DateTime.now().millisecondsSinceEpoch;
+                              final directory =
+                                  await getApplicationDocumentsDirectory();
+                              String fileFormat =
+                                  imageFile.path.split('.').last;
+
+                              await imageFile.copy(
+                                '${directory.path}/$currentUnix.$fileFormat',
+                              );
+                            },
+                            child: const Icon(
+                              Icons.camera,
+                              color: orangeColor,
+                              size: 34,
+                            )),
+                        InkWell(
+                            onTap: () async {
+                              setState(() {
+                                _isCameraInitialized = false;
+                              });
+                              onNewCameraSelected(
+                                cameras[_isRearCameraSelected ? 0 : 1],
+                              );
+                              setState(() {
+                                _isRearCameraSelected = !_isRearCameraSelected;
+                              });
+                            },
+                            child: Container(
                                 width: 32,
                                 height: 32,
                                 decoration: BoxDecoration(
@@ -237,63 +268,14 @@ class _CameraPageState extends State<CameraPage> {
                                   borderRadius: BorderRadius.circular(5),
                                 ),
                                 child: const Icon(
-                                  Icons.image_outlined,
+                                  Icons.camera_front_outlined,
                                   color: whiteColor,
-                                ),
-                              )),
-                          InkWell(
-                              onTap: () async {
-                                XFile? rawImage = await takePicture();
-                                File imageFile = File(rawImage!.path);
-
-                                handleResultPage(rawImage.path);
-
-                                int currentUnix =
-                                    DateTime.now().millisecondsSinceEpoch;
-                                final directory =
-                                    await getApplicationDocumentsDirectory();
-                                String fileFormat =
-                                    imageFile.path.split('.').last;
-
-                                await imageFile.copy(
-                                  '${directory.path}/$currentUnix.$fileFormat',
-                                );
-                              },
-                              child: const Icon(
-                                Icons.camera,
-                                color: orangeColor,
-                                size: 34,
-                              )),
-                          InkWell(
-                              onTap: () async {
-                                setState(() {
-                                  _isCameraInitialized = false;
-                                });
-                                onNewCameraSelected(
-                                  cameras[_isRearCameraSelected ? 0 : 1],
-                                );
-                                setState(() {
-                                  _isRearCameraSelected =
-                                      !_isRearCameraSelected;
-                                });
-                              },
-                              child: Container(
-                                  width: 32,
-                                  height: 32,
-                                  decoration: BoxDecoration(
-                                    color: orangeColor,
-                                    borderRadius: BorderRadius.circular(5),
-                                  ),
-                                  child: const Icon(
-                                    Icons.camera_front_outlined,
-                                    color: whiteColor,
-                                  ))),
-                        ],
-                      ),
-                    )
-                  ],
-                )
-              : Container()),
-    );
+                                ))),
+                      ],
+                    ),
+                  )
+                ],
+              )
+            : Container());
   }
 }

@@ -39,8 +39,8 @@ class CameraFliedWidget extends StatelessWidget {
                       "Fitur masih proses pengembangan Beta", [
                     OrangeButton(
                       contentText: "Okey",
-                      minimumSize: const Size(240, 35),
-                      maximumSize: const Size(double.infinity, 35),
+                      minimumSize: const Size(240, 40),
+                      maximumSize: const Size(double.infinity, 40),
                       onPressedFunc: () => Navigator.push(
                           context,
                           MaterialPageRoute(

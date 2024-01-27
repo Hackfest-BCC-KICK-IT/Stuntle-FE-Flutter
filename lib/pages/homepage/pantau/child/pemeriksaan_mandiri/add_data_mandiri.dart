@@ -52,8 +52,8 @@ class AddDataMandiri extends StatelessWidget {
                   ),
                   OrangeButton(
                     contentText: "Lihat Panduan Penggunaan Fitur Foto",
-                    minimumSize: const Size(280, 36),
-                    maximumSize: const Size(double.infinity, 36),
+                    minimumSize: const Size(280, 40),
+                    maximumSize: const Size(double.infinity, 40),
                     onPressedFunc: () => Navigator.pushNamed(
                       context,
                       panduanAiCamera,

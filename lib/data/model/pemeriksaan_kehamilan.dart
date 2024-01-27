@@ -1,6 +1,6 @@
 class PemeriksaanPrenangcy {
   int? id;
-  DateTime? tanggalPemeriksaan;
+  String? tanggalPemeriksaan;
   String? tempatPemeriksaan;
   String? namaPemeriksa;
   int? usiaKandungan;
@@ -36,7 +36,7 @@ class PemeriksaanPrenangcy {
   factory PemeriksaanPrenangcy.fromJson(Map<String, dynamic> json) =>
       PemeriksaanPrenangcy(
         id: json["id"],
-        tanggalPemeriksaan: DateTime.parse(json["tanggalPemeriksaan"]),
+        tanggalPemeriksaan: json["tanggalPemeriksaan"],
         tempatPemeriksaan: json["tempatPemeriksaan"],
         namaPemeriksa: json["namaPemeriksa"],
         usiaKandungan: json["usiaKandungan"],
